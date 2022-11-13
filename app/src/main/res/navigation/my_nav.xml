@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/userInputFormFragment">
+
+    <fragment
+        android:id="@+id/userInputFormFragment"
+        android:name="com.harry.offerwallapp.UserInputFormFragment"
+        android:label="fragment_user_input_form"
+        tools:layout="@layout/fragment_user_input_form" >
+        <action
+            android:id="@+id/action_userInputFormFragment_to_offerWallListFragment"
+            app:destination="@id/offerWallListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/offerWallListFragment"
+        android:name="com.harry.offerwallapp.OfferWallListFragment"
+        android:label="fragment_offer_wall_list"
+        tools:layout="@layout/fragment_offer_wall_list" >
+        <action
+            android:id="@+id/action_offerWallListFragment_to_userInputFormFragment"
+            app:destination="@id/userInputFormFragment" />
+    </fragment>
+</navigation>

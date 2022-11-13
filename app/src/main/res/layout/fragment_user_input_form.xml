@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:context=".UserInputFormFragment">
+
+    <EditText
+        android:id="@+id/et_appId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="App Id"
+        android:hint="enter App Id"
+        android:inputType="text"
+        android:background="@drawable/edit_text_background"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        android:paddingStart="10dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+    </EditText>
+
+    <EditText
+        android:id="@+id/et_userId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="User Id"
+        android:hint="enter User Id"
+        android:inputType="text"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/edit_text_background"
+        android:layout_marginHorizontal="20dp">
+    </EditText>
+
+    <EditText
+        android:id="@+id/et_token"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="token"
+        android:hint="enter token"
+        android:inputType="text"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/edit_text_background"
+        android:layout_marginHorizontal="20dp">
+    </EditText>
+
+    <Button
+        android:id="@+id/btn_fetchOffer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
+        android:text="fetch Offers">
+
+    </Button>
+
+</LinearLayout>
