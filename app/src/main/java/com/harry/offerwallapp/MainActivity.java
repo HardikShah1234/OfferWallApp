@@ -2,10 +2,10 @@ package com.harry.offerwallapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import com.harry.offerwallapp.databinding.ActivityMainBinding;
 import dagger.hilt.android.AndroidEntryPoint;
@@ -29,8 +29,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this,R.id.fragmentContainerView);
-        return navController.navigateUp() || super.onSupportNavigateUp();
+    public void onBackPressed(){
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+        if(count == 0) {
+            super.onBackPressed();
+        } else {
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.detach(getFragmentManager().findFragmentByTag("offerListFragment"));
+            getSupportFragmentManager().popBackStack();
+        }
     }
 }

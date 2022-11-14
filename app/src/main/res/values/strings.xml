@@ -2,4 +2,9 @@
     <string name="app_name">Offer Wall App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fetch_offers">fetch Offers</string>
+    <string name="please_enter_token">Please enter token *</string>
+    <string name="please_enter_user_id">Please enter User Id *</string>
+    <string name="please_enter_app_id">Please enter App Id *</string>
+    <string name="required_string_error">This is required field</string>
 </resources>

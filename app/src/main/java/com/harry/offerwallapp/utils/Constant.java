@@ -19,6 +19,9 @@ public class Constant {
     public static final String PAGE = "page";
     public static final String PHONE_VERSION = "phone_version";
 
+    public static final String SPECIAL_CHAR_AMP = "&";
+    public static final String SPECIAL_CHAR_EQUAL = "=";
+
     /**
      * [OfferRequest] constants.
      */

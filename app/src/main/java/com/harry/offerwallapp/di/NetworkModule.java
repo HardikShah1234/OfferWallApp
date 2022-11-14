@@ -1,5 +1,7 @@
 package com.harry.offerwallapp.di;
 
+import static com.harry.offerwallapp.utils.Constant.BASE_URL;
+
 import com.harry.offerwallapp.network.FyberApi;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Singleton;
@@ -46,7 +48,7 @@ public class NetworkModule {
     @Singleton
     @Provides
     public Retrofit provideRetrofitInstance(OkHttpClient okHttpClient, GsonConverterFactory gsonConverterFactory) {
-        return new Retrofit.Builder().baseUrl("http://api.fyber.com/feed/v1/").
+        return new Retrofit.Builder().baseUrl(BASE_URL).
                 addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(gsonConverterFactory)
                 .client(okHttpClient).build();

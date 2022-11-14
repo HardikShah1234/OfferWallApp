@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="App Id"
-        android:hint="enter App Id *"
+        android:hint="@string/please_enter_app_id"
         android:inputType="text"
         android:background="@drawable/edit_text_background"
         android:layout_marginHorizontal="20dp"
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="User Id"
-        android:hint="enter User Id *"
+        android:hint="@string/please_enter_user_id"
         android:inputType="text"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="token"
-        android:hint="enter token *"
+        android:hint="@string/please_enter_token"
         android:inputType="text"
         android:layout_marginTop="20dp"
         android:paddingBottom="10dp"
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="30dp"
-        android:text="fetch Offers">
+        android:text="@string/fetch_offers">
 
     </Button>
 </LinearLayout>

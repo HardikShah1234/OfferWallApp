@@ -1,21 +1,19 @@
 package com.harry.offerwallapp;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+
 import com.harry.offerwallapp.base.BaseFragment;
 import com.harry.offerwallapp.databinding.FragmentUserInputFormBinding;
-import com.harry.offerwallapp.viewModel.OfferWallViewModel;
 
-import java.util.Map;
 import java.util.Objects;
+
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
@@ -50,13 +48,13 @@ public class UserInputFormFragment extends BaseFragment<FragmentUserInputFormBin
                 if (isAllFieldChecked) {
                     Bundle bundle = new Bundle();
                     bundle.putString("appid", binding.etAppId.getText().toString());
-                    bundle.putString("uid",binding.etUserId.getText().toString());
+                    bundle.putString("uid", binding.etUserId.getText().toString());
                     bundle.putString("token", binding.etToken.getText().toString());
                     OfferWallListFragment offerWallListFragment = new OfferWallListFragment();
                     offerWallListFragment.setArguments(bundle);
                     requireActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(((ViewGroup) requireView().getParent()).getId(), offerWallListFragment)
-                            .addToBackStack(null)
+                            .replace(((ViewGroup) requireView().getParent()).getId(), offerWallListFragment,"offerListFragment")
+                            .addToBackStack("offerListFragment")
                             .commit();
                 }
             }
@@ -67,17 +65,17 @@ public class UserInputFormFragment extends BaseFragment<FragmentUserInputFormBin
     }
 
     private boolean validateAllFields(FragmentUserInputFormBinding binding) {
-        if (binding.etAppId.length() == 0 ) {
-            binding.etUserId.setError("This field is required");
+        if (binding.etAppId.length() == 0 && !binding.etAppId.getText().toString().trim().equals("")) {
+            binding.etUserId.setError(String.valueOf(R.string.required_string_error));
             return false;
         }
-        if (binding.etToken.length() == 0 ) {
-            binding.etToken.setError("This field is required");
+        if (binding.etToken.length() == 0 && !binding.etToken.getText().toString().trim().equals("")) {
+            binding.etToken.setError(String.valueOf(R.string.required_string_error));
             return false;
         }
 
-        if (binding.etUserId.length() == 0) {
-            binding.etUserId.setError("This field is required");
+        if (binding.etUserId.length() == 0 && !binding.etUserId.getText().toString().trim().equals("")) {
+            binding.etUserId.setError(String.valueOf(R.string.required_string_error));
             return false;
         }
         return true;
