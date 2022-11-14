@@ -43,7 +43,5 @@
                 tools:text="@tools:sample/backgrounds/scenic" />
 
         </LinearLayout>
-
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>

@@ -21,6 +21,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class UserInputFormFragment extends BaseFragment<FragmentUserInputFormBinding> {
 
+    boolean isAllFieldChecked = false;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,21 +42,45 @@ public class UserInputFormFragment extends BaseFragment<FragmentUserInputFormBin
     }
 
     private void bind(FragmentUserInputFormBinding binding) {
+
         binding.btnFetchOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("appid", binding.etAppId.getText().toString());
-                bundle.putString("uid",binding.etUserId.getText().toString());
-                bundle.putString("token", binding.etToken.getText().toString());
-                OfferWallListFragment offerWallListFragment = new OfferWallListFragment();
-                offerWallListFragment.setArguments(bundle);
-                requireActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(((ViewGroup) requireView().getParent()).getId(), offerWallListFragment)
-                        .addToBackStack(null)
-                        .commit();
+                isAllFieldChecked = validateAllFields(binding);
+                if (isAllFieldChecked) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("appid", binding.etAppId.getText().toString());
+                    bundle.putString("uid",binding.etUserId.getText().toString());
+                    bundle.putString("token", binding.etToken.getText().toString());
+                    OfferWallListFragment offerWallListFragment = new OfferWallListFragment();
+                    offerWallListFragment.setArguments(bundle);
+                    requireActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(((ViewGroup) requireView().getParent()).getId(), offerWallListFragment)
+                            .addToBackStack(null)
+                            .commit();
+                }
             }
         });
+        binding.etAppId.setText("1246");
+        binding.etUserId.setText("superman");
+        binding.etToken.setText("82085b8b7b31b3e80beefdc0430e2315f67cd3e1");
+    }
+
+    private boolean validateAllFields(FragmentUserInputFormBinding binding) {
+        if (binding.etAppId.length() == 0 ) {
+            binding.etUserId.setError("This field is required");
+            return false;
+        }
+        if (binding.etToken.length() == 0 ) {
+            binding.etToken.setError("This field is required");
+            return false;
+        }
+
+        if (binding.etUserId.length() == 0) {
+            binding.etUserId.setError("This field is required");
+            return false;
+        }
+        return true;
     }
 
     @Override

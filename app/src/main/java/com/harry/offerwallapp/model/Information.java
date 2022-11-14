@@ -8,24 +8,31 @@ public class Information {
     @SerializedName("app_name")
     @Expose
     private String appName;
+
     @SerializedName("appid")
     @Expose
     private Integer appid;
+
     @SerializedName("placement_id")
     @Expose
     private String placementId;
+
     @SerializedName("virtual_currency")
     @Expose
     private String virtualCurrency;
+
     @SerializedName("virtual_currency_sale_enabled")
     @Expose
     private Boolean virtualCurrencySaleEnabled;
+
     @SerializedName("country")
     @Expose
     private String country;
+
     @SerializedName("language")
     @Expose
     private String language;
+
     @SerializedName("support_url")
     @Expose
     private String supportUrl;

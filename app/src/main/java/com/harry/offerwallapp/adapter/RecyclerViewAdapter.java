@@ -40,7 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         if (offerResponse == null) {
             return 0;
         } else {
-            return offerResponse.getOffers().size();
+            return offerResponse.getCount();
         }
     }
 

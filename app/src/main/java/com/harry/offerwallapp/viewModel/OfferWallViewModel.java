@@ -4,10 +4,8 @@ import static com.harry.offerwallapp.utils.Constant.IP_ADD;
 import static com.harry.offerwallapp.utils.Constant.LOCALE_VALUE;
 import static com.harry.offerwallapp.utils.Constant.OFFER_TYPES_VALUE;
 import static com.harry.offerwallapp.utils.Constant.OS_VERSION_VALUE;
-import static com.harry.offerwallapp.utils.Constant.PAGE_NUMBER;
 import static com.harry.offerwallapp.utils.Constant.PHONE_VERSION_VALUE;
 import static com.harry.offerwallapp.utils.Constant.TIMESTAMP_VALUE;
-import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
@@ -42,25 +40,24 @@ public class OfferWallViewModel extends ViewModel {
         applicationId = savedStateHandle.get("appid");
         userId = savedStateHandle.get("uid");
         token = savedStateHandle.get("token");
+    }
+
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+
+    public MutableLiveData<OfferResponse> getLiveData(int pageNumber) {
+        offerRepository = new OfferRepository(fyberApi);
         offerRequest = new OfferRequest(
                 applicationId,
                 IP_ADD,
                 LOCALE_VALUE,
                 OFFER_TYPES_VALUE,
                 OS_VERSION_VALUE,
-                PAGE_NUMBER,
+                String.valueOf(pageNumber),
                 PHONE_VERSION_VALUE,
                 TIMESTAMP_VALUE,
                 userId,
-                getHashString()
+                getHashString(String.valueOf(pageNumber))
         );
-    }
-
-    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
-
-    public MutableLiveData<OfferResponse> getLiveData() {
-        offerRepository = new OfferRepository(fyberApi);
-        Log.d("View Model Request params", String.valueOf(offerRequest));
         return (MutableLiveData<OfferResponse>) offerRepository.fetchOffers(
                 compositeDisposable, offerRequest, token);
     }
@@ -69,19 +66,18 @@ public class OfferWallViewModel extends ViewModel {
         return (MutableLiveData<NetworkState>) offerRepository.getNetworkState();
     }
 
-    //Dynamic when passing arguments
-    private String getHashString() {
-        String allParams = "appid=".concat(applicationId)
+    private String getHashString(String pageNumber) {
+        String apiRequestParams = "appid=".concat(applicationId)
                 .concat("&").concat("ip=").concat(IP_ADD)
                 .concat("&").concat("locale=").concat(LOCALE_VALUE)
                 .concat("&").concat("offer_types=").concat(OFFER_TYPES_VALUE)
                 .concat("&").concat("os_version=").concat(OS_VERSION_VALUE)
-                .concat("&").concat("page=").concat(PAGE_NUMBER)
+                .concat("&").concat("page=").concat(pageNumber)
                 .concat("&").concat("phone_version=").concat(PHONE_VERSION_VALUE)
                 .concat("&").concat("timestamp=").concat(TIMESTAMP_VALUE)
                 .concat("&").concat("uid=").concat(userId)
                 .concat("&").concat(token);
-        return GenerateHashKey.generate(allParams);
+        return GenerateHashKey.generate(apiRequestParams);
     }
 
     @Override
