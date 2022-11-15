@@ -1,11 +1,14 @@
 package com.harry.offerwallapp.repository;
 
 import androidx.lifecycle.LiveData;
+
 import com.harry.offerwallapp.model.OfferRequest;
 import com.harry.offerwallapp.model.OfferResponse;
 import com.harry.offerwallapp.network.FyberApi;
 import com.harry.offerwallapp.utils.NetworkState;
+
 import javax.inject.Inject;
+
 import io.reactivex.disposables.CompositeDisposable;
 
 public class OfferRepository {
@@ -27,6 +30,13 @@ public class OfferRepository {
         dataSource = new DataSource(fyberApi, compositeDisposable);
         dataSource.fetchOffers(signature, offerRequest.asQueryMap());
         return DataSource.getOfferResponse();
+    }
+
+    public void fetchOffers(
+            OfferRequest offerRequest,
+            String signature
+    ) {
+        dataSource.fetchOffers(signature, offerRequest.asQueryMap());
     }
 
     public LiveData<NetworkState> getNetworkState() {

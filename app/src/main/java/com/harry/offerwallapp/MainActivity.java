@@ -27,16 +27,4 @@ public class MainActivity extends AppCompatActivity {
             NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         }
     }
-
-    @Override
-    public void onBackPressed(){
-        int count = getSupportFragmentManager().getBackStackEntryCount();
-        if(count == 0) {
-            super.onBackPressed();
-        } else {
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.detach(getFragmentManager().findFragmentByTag("offerListFragment"));
-            getSupportFragmentManager().popBackStack();
-        }
-    }
 }

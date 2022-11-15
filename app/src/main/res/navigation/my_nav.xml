@@ -18,9 +18,5 @@
         android:id="@+id/offerWallListFragment"
         android:name="com.harry.offerwallapp.OfferWallListFragment"
         android:label="fragment_offer_wall_list"
-        tools:layout="@layout/fragment_offer_wall_list" >
-        <action
-            android:id="@+id/action_offerWallListFragment_to_userInputFormFragment"
-            app:destination="@id/userInputFormFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_offer_wall_list" />
 </navigation>

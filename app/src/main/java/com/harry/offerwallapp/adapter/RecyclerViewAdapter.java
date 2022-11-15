@@ -1,5 +1,6 @@
 package com.harry.offerwallapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,14 +8,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.harry.offerwallapp.databinding.ItemOfferListBinding;
+import com.harry.offerwallapp.model.Offer;
 import com.harry.offerwallapp.model.OfferResponse;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder> {
 
-    private OfferResponse offerResponse;
+    private final ArrayList<Offer> list = new ArrayList<>();
 
-    public void setOfferResponse(OfferResponse offerResponse) {
-        this.offerResponse = offerResponse;
+    @SuppressLint("NotifyDataSetChanged")
+    public void addOffers(List<Offer> offers) {
+        list.addAll(offers);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -26,22 +33,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.CustomViewHolder holder, int position) {
-        holder.binding.txtOfferTitle.setText(
-                offerResponse.
-                        getOffers().get(position).getTitle());
-        Glide.with(holder.binding.cvIvImagePoster)
-                .load(offerResponse.getOffers().
-                        get(position).getThumbnail().getHires())
-                .into(holder.binding.cvIvImagePoster);
+        Offer offer = list.get(position);
+        holder.binding.txtOfferTitle.setText(offer.getTitle());
+        Glide.with(holder.binding.cvIvImagePoster).load(offer.getThumbnail().getHires()).into(holder.binding.cvIvImagePoster);
     }
 
     @Override
     public int getItemCount() {
-        if (offerResponse == null) {
-            return 0;
-        } else {
-            return offerResponse.getCount();
-        }
+        return list.size();
     }
 
     public static class CustomViewHolder extends RecyclerView.ViewHolder {
